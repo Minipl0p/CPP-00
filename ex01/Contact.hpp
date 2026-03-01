@@ -5,24 +5,28 @@
 
 class Contact
 {
-private:
-	std::string firstName;
-	std::string lastName;
-	std::string nickname;
-	std::string number;
-	std::string darkestSecret;
-public:
-	void setFirstName(const std::string& value);
-    void setLastName(const std::string& value);
-    void setNickname(const std::string& value);
-    void setNumber(const std::string& value);
-    void setDarkestSecret(const std::string& value);
+	private:
+		std::string _firstName;
+		std::string _lastName;
+		std::string _nickname;
+		std::string _number;
+		std::string _darkestSecret;
 
-    const std::string& getFirstName() const;
-    const std::string& getLastName() const;
-    const std::string& getNickname() const;
-    const std::string& getNumber() const;
-    const std::string& getDarkestSecret() const;
+		void setFirstName(const std::string& value);
+		void setLastName(const std::string& value);
+		void setNickname(const std::string& value);
+		void setNumber(const std::string& value);
+		void setDarkestSecret(const std::string& value);
+	public:
+		Contact(const std::string& first, const std::string& last, const std::string& nick,
+				const std::string& number, const std::string& secret);
+		~Contact();
+
+		const std::string& getFirstName() const;
+		const std::string& getLastName() const;
+		const std::string& getNickname() const;
+		const std::string& getNumber() const;
+		const std::string& getDarkestSecret() const;
 };
 
 #endif

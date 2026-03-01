@@ -6,13 +6,14 @@
 class PhoneBook
 {
 private:
-	Contact	contacts[8];
+	Contact	*contacts[8];
 	int		nextIdx;
 	int		count;
 
 public:
 	bool	addContact();
 	void	search() const;
+	void	delContacts();
 };
 
 #endif
