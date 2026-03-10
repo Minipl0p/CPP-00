@@ -18,9 +18,9 @@ class Contact
 		void setNumber(const std::string& value);
 		void setDarkestSecret(const std::string& value);
 	public:
-		Contact(const std::string& first, const std::string& last, const std::string& nick,
+		Contact();
+		void	addNew(const std::string& first, const std::string& last, const std::string& nick,
 				const std::string& number, const std::string& secret);
-		~Contact();
 
 		const std::string& getFirstName() const;
 		const std::string& getLastName() const;

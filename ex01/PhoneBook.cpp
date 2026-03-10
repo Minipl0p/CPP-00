@@ -23,8 +23,6 @@ bool	readNonEmptyLine(const char *prompt, std::string &out)
 
 bool	PhoneBook::addContact()
 {
-	Contact	*c;
-
 	std::string	first;
 	std::string	last;
 	std::string	nick;
@@ -39,7 +37,7 @@ bool	PhoneBook::addContact()
 	if (!readNonEmptyLine("What is the darkest secret ?", secret))	return false;
 
 	// SET CLASS CONTACT WITH VARIABLES
-	c = new Contact(first, last, nick, number, secret);
+	contacts[nextIdx].addNew(first, last, nick, number, secret);
 
 	// INCREASE COUNT AND UPDATE NEXTIDX
 	if (count < 8)
@@ -63,7 +61,7 @@ static bool	readIdx(int &idx, int max)
 	if (line.empty())
 		return false;
 	// Is not only digit -> false
-	for (std::string::iterator it; *it; it++)
+	for (std::string::iterator it = line.begin(); it != line.end(); it++)
 		if (!(std::isdigit(*it)))
 			return false;
 
@@ -89,6 +87,11 @@ static std::string formatField(const std::string& str)
 
 void	PhoneBook::search() const
 {
+	if (count <= 0)
+	{
+		std::cout	<< "No contact in the phonebook" << std::endl;
+		return;
+	}
 // PRINT ARRAY OF CONTACT WITH INDEX
 	std::cout << "|==========|==========|==========|==========|\n" << std::flush;
 	std::cout << "|Index     |First Name|Last Name |Nickname  |\n" << std::flush;
@@ -97,26 +100,26 @@ void	PhoneBook::search() const
 	{
 		std::cout	<< "|"
 					<< std::setw(10) << i << "|"
-					<< std::setw(10) << formatField(contacts[i]->getFirstName()) << "|"
-					<< std::setw(10) << formatField(contacts[i]->getLastName()) << "|"
-					<< std::setw(10) << formatField(contacts[i]->getNickname()) << "|"
-					<< std::endl;
+					<< std::setw(10) << formatField(contacts[i].getFirstName()) << "|"
+					<< std::setw(10) << formatField(contacts[i].getLastName()) << "|"
+					<< std::setw(10) << formatField(contacts[i].getNickname()) << "|"
+					<< "\n|==========|==========|==========|==========|\n" << std::flush;
 	}
 
 // ASK THE USER FOR THE CONTACT HE WANT
 	int	idx;
-	if (!(readIdx(idx, count)))
+	if (!(readIdx(idx, count - 1)))
 	{
 		std::cout	<< "Invalid index or input ended.\n" << std::flush;
 		return ;
 	}
 
 // PRINT THE CONTACT
-	Contact	*c = contacts[idx];
+	Contact	c = contacts[idx];
 
-	std::cout	<< "first name : " << c->getFirstName() << "\n"
-				<< "last name : " << c->getLastName() << "\n"
-				<< "nickname : " << c->getNickname() << "\n"
-				<< "number : " << c->getNumber() << "\n"
-				<< "darkest secret : " << c->getDarkestSecret() << std::endl;
+	std::cout	<< "first name : " << c.getFirstName() << "\n"
+				<< "last name : " << c.getLastName() << "\n"
+				<< "nickname : " << c.getNickname() << "\n"
+				<< "number : " << c.getNumber() << "\n"
+				<< "darkest secret : " << c.getDarkestSecret() << std::endl;
 }

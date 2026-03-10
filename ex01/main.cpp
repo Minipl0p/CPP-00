@@ -7,6 +7,8 @@ int	main(void)
 	std::string str;
 	PhoneBook ph;
 
+	ph.nextIdx = 0;
+	ph.count = 0;
 	while (1)
 	{
 		std::cout	<< "Phonebook command : " << std::flush;
