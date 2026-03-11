@@ -16,12 +16,10 @@ int	main(void)
 			break ;
 		else if (!str.compare("ADD"))
 		{
-			// std::cout << "ADD\n" << std::flush;
 			ph.addContact();
 		}
 		else if (!str.compare("SEARCH"))
 		{
-			// std::cout << "SEARCH\n" << std::flush;
 			ph.search();
 		}
 		else if (!str.compare("EXIT"))
